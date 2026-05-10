@@ -2,6 +2,7 @@
 <html lang="ja">
 <head>
   <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
   <title>余白の1分</title>
   <style>
     body {
@@ -15,8 +16,10 @@
     }
     .card {
       background: white;
-      padding: 40px;
+      padding: 16px;
       width: 320px;
+      max-width: calc(100vw - 32px);
+      box-sizing: border-box;
       border-radius: 12px;
       box-shadow: 0 10px 30px rgba(0,0,0,0.08);
       text-align: left;
@@ -40,7 +43,7 @@
     }
     .body {
       white-space: pre-line;
-      line-height: 1.8;
+      line-height: 1.6;
       font-size: 15px;
     }
     .answer-form {
