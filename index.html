@@ -1,0 +1,152 @@
+<!DOCTYPE html>
+<html lang="ja">
+<head>
+  <meta charset="UTF-8">
+  <title>余白の1分</title>
+  <style>
+    body {
+      font-family: -apple-system, BlinkMacSystemFont, sans-serif;
+      background: #f9f9f9;
+      display: flex;
+      justify-content: center;
+      align-items: center;
+      height: 100vh;
+      margin: 0;
+    }
+    .card {
+      background: white;
+      padding: 40px;
+      width: 320px;
+      border-radius: 12px;
+      box-shadow: 0 10px 30px rgba(0,0,0,0.08);
+      text-align: left;
+      opacity: 0;
+      transform: translateY(10px);
+      transition: all 0.6s ease;
+    }
+    .card.show {
+      opacity: 1;
+      transform: translateY(0);
+    }
+    .date {
+      font-size: 12px;
+      color: #999;
+      margin-bottom: 16px;
+    }
+    .title {
+      font-size: 14px;
+      margin-bottom: 12px;
+      color: #666;
+    }
+    .body {
+      white-space: pre-line;
+      line-height: 1.8;
+      font-size: 15px;
+    }
+    .answer-form {
+      position: relative;
+      margin-top: 24px;
+    }
+    .answer-input {
+      width: 100%;
+      min-height: 120px;
+      box-sizing: border-box;
+      padding: 14px 78px 48px 14px;
+      border: 1px solid #e5e5e5;
+      border-radius: 16px;
+      resize: vertical;
+      font: inherit;
+      line-height: 1.6;
+      color: #333;
+      background: #fafafa;
+      outline: none;
+    }
+    .answer-input:focus {
+      border-color: #c9c9c9;
+      background: #fff;
+      box-shadow: 0 0 0 3px rgba(0,0,0,0.04);
+    }
+    .send-button {
+      position: absolute;
+      right: 12px;
+      bottom: 12px;
+      border: none;
+      border-radius: 999px;
+      padding: 8px 14px;
+      color: #fff;
+      background: #333;
+      font: inherit;
+      font-size: 13px;
+      cursor: pointer;
+    }
+    .send-button:hover {
+      background: #111;
+    }
+  </style>
+</head>
+<body>
+
+<div class="card" id="card">
+  <div class="date" id="date"></div>
+  <div class="title" id="title"></div>
+  <div class="body" id="body"></div>
+  <form class="answer-form" id="answerForm">
+    <textarea class="answer-input" id="answerInput" placeholder="思い浮かんだことを書いてみる"></textarea>
+    <button class="send-button" type="submit">▲</button>
+  </form>
+</div>
+
+<script>
+const contents = {
+  "2026-05-09": {
+    title: "今日の断片",
+    body: "「懐かしい未来」という言葉を見かけた。\n\nまだ起きてないのに、\nなぜか懐かしく感じる瞬間のことらしい。\n\n最近それに近い感覚、あった？"
+  },
+  "2026-05-10": {
+    title: "今日の断片",
+    body: "ある人のメモ。\n\n「人は“選んだもの”よりも、\n“選ばなかったもの”に影響されている気がする」\n\nこれ、今の自分に当てはまる？\n1つだけ思い浮かべてみて。"
+  },
+  "2026-05-11": {
+    title: "今日の断片",
+    body: "“静かなワクワク”ってどんな感覚？\n\n・音にすると？\n・場所にすると？\n・色にすると？\n\nどれか1つだけ選んでみて。"
+  },
+  "2026-05-12": {
+    title: "今日の断片",
+    body: "旅行先のホテルで、\n夜中にふと目が覚めた瞬間を想像してみて。\n\n静かで、\n少しだけ空気が違う。\n\nその部屋には、\n自分の家にない“何”があると思う？"
+  },
+  "2026-05-13": {
+    title: "今日の断片",
+    body: "本屋で、\n読む予定じゃなかった本を\nなぜか手に取ってしまう瞬間がある。\n\nそのとき、\nあなたは何に反応してると思う？\n\nタイトル？\n色？\n今の気分？"
+  },
+  "2026-05-14": {
+    title: "今日の断片",
+    body: "雨の音を聞いているとき、\n\n「安心する雨」と\n「少し寂しい雨」がある気がする。\n\nその違いって、\n何なんだろう。"
+  },
+  "2026-05-15": {
+    title: "今日の断片",
+    body: "少し先の未来。\n\n朝起きたとき、\n「今日は何か良いことが起こりそう」\nと思える日は、\n\nどんな光だったと思う？"
+  },
+};
+
+const today = new Date().toISOString().slice(0,10);
+const data = contents[today] || {
+  title: "",
+  body: "今日はまだ用意されていません。"
+};
+
+document.getElementById("date").innerText = today;
+document.getElementById("title").innerText = data.title;
+document.getElementById("body").innerText = data.body;
+
+document.getElementById("answerForm").addEventListener("submit", (event) => {
+  event.preventDefault();
+  document.getElementById("answerInput").value = "";
+});
+
+setTimeout(() => {
+  document.getElementById("card").classList.add("show");
+}, 100);
+</script>
+
+</body>
+</html>
